@@ -1,0 +1,9 @@
+transaction_id,customer_id,transaction_date,amount,quantity,category,channel,store_id
+1,1,2024-01-10,125.50,2,Electronics,Online,STORE_001
+2,2,2024-01-11,45.20,1,Clothing,In-Store,STORE_001
+3,3,2024-01-12,89.99,3,Home & Garden,Mobile App,STORE_001
+4,4,2024-01-13,220.00,1,Electronics,Online,STORE_001
+5,5,2024-01-14,33.75,2,Groceries,In-Store,STORE_001
+6,1,2024-02-01,78.50,1,Sports,Online,STORE_001
+7,2,2024-02-05,156.00,2,Beauty,Mobile App,STORE_001
+8,3,2024-02-10,245.99,1,Electronics,Online,STORE_001

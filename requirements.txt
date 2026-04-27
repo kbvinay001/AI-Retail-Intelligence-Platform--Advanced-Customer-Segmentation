@@ -1,0 +1,62 @@
+# AI Retail Intelligence Platform - V3.0 Requirements
+# Core Data Science
+pandas>=1.5.0
+numpy>=1.23.0
+scikit-learn>=1.1.0
+scipy>=1.9.0
+
+# Visualization
+plotly>=5.10.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+kaleido>=0.2.1
+
+# Machine Learning & AI
+xgboost>=1.7.0
+lightgbm>=3.3.0
+statsmodels>=0.13.0
+prophet>=1.1.1
+
+# REST API (V3.0)
+fastapi>=0.95.0
+uvicorn[standard]>=0.21.0
+pydantic>=1.10.0
+httpx>=0.24.0
+python-multipart>=0.0.6
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+slowapi>=0.1.8
+
+# Security & Encryption (V3.0)
+cryptography>=40.0.0
+bcrypt>=4.0.0
+PyJWT>=2.6.0
+python-dotenv>=1.0.0
+
+# Database & Caching (V3.0)
+sqlalchemy>=2.0.0
+alembic>=1.10.0
+redis>=4.5.0
+psycopg2-binary>=2.9.5
+
+# Time Series Forecasting (V3.0)
+pmdarima>=2.0.0
+neuralprophet>=0.6.0
+
+# Notifications & Async (V3.0)
+celery>=5.2.0
+smtplib2>=0.2.0
+
+# Testing & Development
+pytest>=7.2.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+httpx>=0.24.0
+
+# Jupyter / Notebook
+jupyter>=1.0.0
+ipykernel>=6.22.0
+nbconvert>=7.3.0

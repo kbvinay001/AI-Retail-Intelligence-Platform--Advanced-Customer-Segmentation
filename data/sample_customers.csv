@@ -1,0 +1,6 @@
+customer_id,age_group,gender,city,acquisition_date,store_id
+1,26-35,Male,Mumbai,2023-01-15,STORE_001
+2,36-45,Female,Delhi,2022-08-20,STORE_001
+3,18-25,Male,Bangalore,2023-06-10,STORE_001
+4,46-55,Female,Chennai,2021-11-05,STORE_001
+5,26-35,Male,Hyderabad,2022-03-22,STORE_001
