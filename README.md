@@ -1,251 +1,255 @@
-# AI Retail Intelligence Platform — V3.0
-[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Plotly](https://img.shields.io/badge/Plotly-Interactive-red?style=flat&logo=plotly&logoColor=white)](https://plotly.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Colab](https://img.shields.io/badge/Google-Colab-orange?style=flat&logo=google-colab&logoColor=white)](https://colab.research.google.com/)
+# RetailIQ — AI Retail Intelligence Platform
 
-> **Version 3.0 — Production-Ready Enterprise Platform**
-> Complete rewrite with REST API, Multi-store support, GPT-4 AI Recommendations,
-> Advanced Forecasting, Field-level Encryption, and RBAC Security.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-4285F4?style=flat&logo=google&logoColor=white)](https://aistudio.google.com/)
+[![Three.js](https://img.shields.io/badge/Three.js-3D%20Spatial-black?style=flat&logo=three.js&logoColor=white)](https://threejs.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+> **Version 3.0 — Enterprise Platform + Interactive React Web App**
+> Full-stack AI retail analytics: Python backend engine, FastAPI microservice, and a
+> premium dark-matte React dashboard with real-time charts, 3D spatial views, and Gemini AI insights.
 
 ---
 
-## 🚀 What's New in V3.0
+## ✨ What's Inside
 
-| Feature | Status | Details |
-|---------|--------|---------|
-| 🧠 GPT-4 AI Recommendations | ✅ | Strategy suggestions with rule-based fallback |
-| 🌍 Multi-Store Analytics | ✅ | Cross-location KPIs, benchmarking, regional roll-up |
-| 🔌 REST API (FastAPI) | ✅ | Full microservice with Swagger UI |
-| 📊 Advanced Forecasting | ✅ | Prophet / ARIMA / XGBoost / Simple MA |
-| 🛡️ Enterprise Security | ✅ | JWT, bcrypt, Fernet encryption, RBAC |
-| 🏢 Enterprise Features | ✅ | Multi-tenant, role management, API keys |
+### 🖥️ React Web App (`webapp/`)
+A production-grade frontend built with Vite + React, featuring:
+
+| Feature | Tech | Details |
+|---------|------|---------|
+| **CSV Upload + Synthetic Data** | PapaParse + custom RNG | Drag & drop CSV or generate up to 10K transactions |
+| **RFM Scoring Engine (JS)** | Vanilla JS | Full Recency · Frequency · Monetary quintile scoring |
+| **8-Segment Classification** | Rule-based ML port | VIP Champions · At Risk · Hibernating · and 5 more |
+| **Gemini 2.5 Flash AI Insights** | `@google/generative-ai` | Per-segment strategic recommendations |
+| **Framer Motion Animations** | `framer-motion` | Staggered entrance · spring hover · AnimatePresence tabs |
+| **Regional Sales Velocity Heatmap** | `@nivo/heatmap` | 5 regions × 7 days · dark-matte purple palette |
+| **Real-Time Revenue Stream** | Recharts + `setInterval` | Live data injection every 1.8s · pause/resume |
+| **3D Store Network** | `@react-three/fiber` | Pulsing glowing nodes · orbit controls · star field |
+| **Dark Matte Aesthetic** | Custom CSS | Inter font · indigo/cyan/purple palette · glassmorphism |
+
+### 🐍 Python Backend Engine (`src/`)
+Production-ready analytical modules:
+
+| Module | Purpose |
+|--------|---------|
+| `retail_intelligence.py` | Core RFM engine, K-Means segmentation, anomaly detection |
+| `forecasting_engine.py` | Prophet / ARIMA / XGBoost / Simple MA forecasting |
+| `ai_recommendations.py` | GPT-4 recommendations with rule-based fallback |
+| `multi_store.py` | Multi-store management, regional roll-ups, benchmarking |
+| `security.py` | JWT auth, bcrypt, Fernet field-level encryption, RBAC |
+| `api.py` | FastAPI REST microservice with Swagger UI |
+| `config.py` | Centralised configuration management |
+
+---
+
+## 🚀 Quick Start
+
+### Option A — Web App (Recommended, No Python needed)
+
+**One-click launch (Windows):**
+```
+Double-click:  start_retailiq.bat
+```
+Opens `http://localhost:5173` automatically.
+
+**Or manually:**
+```bash
+cd webapp
+npm install
+npm run dev
+```
+
+**Gemini AI Setup (one-time):**
+```bash
+# Copy the example file
+cp webapp/.env.example webapp/.env
+
+# Edit webapp/.env and paste your key:
+VITE_GEMINI_API_KEY=AIzaSy...yourKeyHere
+```
+Get a free key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
+Once set, Gemini 2.5 Flash insights load automatically — no pasting required.
+
+---
+
+### Option B — Python Backend Engine
+
+**1. Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+
+**2. Configure environment:**
+```bash
+cp .env.example .env
+# Edit .env with your OPENAI_API_KEY, SECRET_KEY, etc.
+```
+
+**3. Run the full demo:**
+```bash
+python run_demo.py
+```
+
+**4. Launch the REST API:**
+```bash
+cd src && uvicorn api:build_app --factory --reload
+# Swagger UI → http://localhost:8000/docs
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```
-AI-Retail-Intelligence-Platform/
-├── 📄 run_demo.py              # One-click complete demo
-├── 📄 requirements.txt         # All dependencies
-├── 📄 setup.py                 # Package installer
-├── 📄 .env.example             # Environment template
-├── 📄 pytest.ini               # Test configuration
-├── 📂 src/
-│   ├── retail_intelligence.py  # Core platform engine
-│   ├── forecasting_engine.py   # Prophet/ARIMA/XGBoost forecasting
-│   ├── ai_recommendations.py   # GPT-4 + rule-based recommendations
-│   ├── multi_store.py          # Multi-store network analytics
-│   ├── security.py             # JWT, encryption, RBAC
-│   ├── api.py                  # FastAPI REST microservice
-│   └── config.py               # Central configuration
-├── 📂 tests/
-│   ├── test_rfm.py
-│   ├── test_segmentation.py
-│   ├── test_forecasting.py
-│   ├── test_security.py
-│   ├── test_multi_store.py
-│   ├── test_recommendations.py
-│   └── test_api.py
-├── 📂 data/
-│   ├── sample_customers.csv
-│   └── sample_transactions.csv
-└── 📂 docs/
-    ├── api_documentation.md
-    └── deployment_guide.md
+AI RETAIL INTELLIGENCE/
+│
+├── webapp/                        # React + Vite Web App
+│   ├── src/
+│   │   ├── App.jsx                # Main app shell + tab navigation
+│   │   ├── index.css              # Dark-matte design system
+│   │   ├── motion/
+│   │   │   └── variants.js        # Framer-motion animation variants
+│   │   ├── components/
+│   │   │   ├── KPICards.jsx       # Animated metric cards
+│   │   │   ├── Charts.jsx         # Recharts visualizations
+│   │   │   ├── NivoCharts.jsx     # Nivo heatmap + real-time line
+│   │   │   ├── StoreNetwork3D.jsx # react-three-fiber 3D scene
+│   │   │   ├── SegmentCard.jsx    # Segment card + Gemini insight
+│   │   │   ├── DataUploader.jsx   # CSV drag & drop
+│   │   │   └── SyntheticGenerator.jsx
+│   │   └── utils/
+│   │       ├── rfm.js             # RFM engine (JS port)
+│   │       ├── syntheticData.js   # Seeded data generator
+│   │       └── gemini.js          # Gemini API client + fallbacks
+│   ├── .env.example               # Copy to .env and add your key
+│   └── package.json
+│
+├── src/                           # Python Backend Engine
+│   ├── retail_intelligence.py
+│   ├── forecasting_engine.py
+│   ├── ai_recommendations.py
+│   ├── multi_store.py
+│   ├── security.py
+│   ├── api.py
+│   └── config.py
+│
+├── tests/                         # 39 pytest test suites
+├── docs/                          # API & deployment documentation
+├── data/                          # Sample datasets
+│
+├── run_demo.py                    # Full Python pipeline demo
+├── start_retailiq.bat             # One-click Windows launcher
+├── requirements.txt
+├── setup.py
+└── .env.example
 ```
 
 ---
 
-## ⚡ Quick Start
+## 🎨 Web App Screens
 
-### Local Setup
-```bash
-git clone https://github.com/kbvinay001/AI-Retail-Intelligence-Platform--Advanced-Customer-Segmentation.git
-cd AI-Retail-Intelligence-Platform--Advanced-Customer-Segmentation
+### Overview Dashboard
+- **6 KPI cards** — staggered entrance with spring hover (framer-motion)
+- **Real-time revenue chart** — live data injection every 1.8s with pause/resume
+- **Regional sales velocity heatmap** — @nivo · 5 regions × 7 days · purple scale
+- **Segment distribution** · **RFM scatter** · **Monthly trend** · **Category/Channel bars** · **CLV histogram**
 
-pip install -r requirements.txt
-cp .env.example .env
+### 3D Spatial Tab
+- Interactive **supply chain network** rendered with WebGL (react-three-fiber)
+- 6 city store nodes with **pulsing glow animations** and orbit rings
+- Auto-rotates when idle · click to inspect revenue · drag to orbit · scroll to zoom
+- Wrapped in **React Suspense** — never blocks initial page render
 
-# Run complete demo (4 pipelines)
-python run_demo.py
+### Segments Tab
+- 8 segment cards with **spring hover micro-interactions**
+- Per-segment stats: recency · frequency · spend · CLV · loyalty score
+- **Gemini 2.5 Flash AI insight** per card: summary · opportunity · 3 action items · priority
 
-# Start REST API → http://localhost:8000/docs
-python src/api.py
-```
-
-### Google Colab
-```python
-!pip install plotly scikit-learn pandas numpy matplotlib seaborn fastapi uvicorn python-jose passlib cryptography python-dotenv
-!git clone https://github.com/kbvinay001/AI-Retail-Intelligence-Platform--Advanced-Customer-Segmentation.git
-%cd AI-Retail-Intelligence-Platform--Advanced-Customer-Segmentation
-exec(open('run_demo.py').read())
-```
+### RFM Table Tab
+- Full paginated customer table with R/F/M scores (1–5)
+- Colour-coded segment badges
 
 ---
 
-## 🧠 V3.0 Features
-
-### 1. GPT-4 AI Recommendations
-```python
-from src.ai_recommendations import AIRecommendationsEngine
-
-engine = AIRecommendationsEngine()   # Uses GPT-4 if OPENAI_API_KEY is set
-recs = engine.generate(kpis, segment_analysis)
-engine.print_recommendations(recs)
-```
-
-### 2. Multi-Store Network Analytics
-```python
-from src.multi_store import MultiStoreAnalytics, StoreConfig
-
-ms = MultiStoreAnalytics(tenant_id="ENTERPRISE_001")
-ms.register_store(StoreConfig("MUM_001", "Mumbai Flagship", "Mumbai", "West"))
-ms.register_store(StoreConfig("DEL_001", "Delhi Central",   "Delhi",  "North"))
-ms.populate_all_stores()
-ms.print_network_summary()
-bench = ms.benchmark_stores()      # Ranked composite scores
-region = ms.regional_rollup()      # Aggregated by region
-```
-
-### 3. REST API (FastAPI)
-```bash
-# Start API
-python src/api.py
-
-# Login
-curl -X POST http://localhost:8000/api/v3/auth/login \
-  -d '{"username":"admin","password":"Admin@123"}'
-
-# Generate data + run analytics
-curl -X POST http://localhost:8000/api/v3/data/generate \
-  -H "Authorization: Bearer <token>" \
-  -d '{"n_customers":1000,"n_transactions":5000,"store_id":"S1"}'
-
-curl -X POST http://localhost:8000/api/v3/analytics/S1/rfm \
-  -H "Authorization: Bearer <token>"
-
-curl http://localhost:8000/api/v3/recommendations/S1 \
-  -H "Authorization: Bearer <token>"
-```
-
-**Swagger UI:** `http://localhost:8000/docs`
-
-### 4. Advanced Forecasting
-```python
-from src.forecasting_engine import ForecastingEngine
-
-eng = ForecastingEngine(model='simple')  # or 'prophet' | 'arima' | 'xgboost'
-forecast = eng.forecast(transactions_df, horizon=90)
-print(eng.get_forecast_summary())
-```
-
-### 5. Enterprise Security
-```python
-from src.security import SecurityManager, Role
-
-sec = SecurityManager()
-hashed = sec.hash_password("MyPass@123")
-token  = sec.create_access_token({"sub": "user1", "role": "analyst"})
-enc    = sec.encrypt_field("sensitive@email.com")
-print(sec.has_permission(Role.ANALYST, "write"))  # True
-```
-
----
-
-## 📊 Core Pipeline (V2 Features — Preserved)
-```python
-from src.retail_intelligence import RetailIntelligencePlatform
-
-rip = RetailIntelligencePlatform(store_id="STORE_001")
-rip.generate_synthetic_data(n_customers=1000, n_transactions=5000)
-rip.calculate_rfm_metrics()
-rip.perform_advanced_segmentation(method='kmeans')
-rip.detect_anomalies(contamination=0.10)
-rip.generate_comprehensive_report()
-rip.create_comprehensive_dashboard(export_html="exports/dashboard.html")
-```
-
----
-
-## 🧪 Testing
+## 🧪 Python Tests
 
 ```bash
-# Run all tests
 python -m pytest tests/ -v
+# ✅ 39/39 tests pass
+```
 
-# With coverage
-python -m pytest tests/ -v --cov=src
+| Test Suite | Coverage |
+|-----------|---------|
+| `test_rfm.py` | RFM computation, CLV, recency |
+| `test_segmentation.py` | K-Means, anomaly detection |
+| `test_forecasting.py` | All 5 forecast scenarios |
+| `test_security.py` | JWT, encryption, RBAC, bcrypt |
+| `test_multi_store.py` | Network KPIs, benchmarking |
+| `test_recommendations.py` | Rule engine, priority logic |
+| `test_api.py` | Full FastAPI integration tests |
 
-# Individual suites
-python -m pytest tests/test_rfm.py -v
-python -m pytest tests/test_security.py -v
-python -m pytest tests/test_api.py -v
+---
+
+## 🔐 Security
+
+| Feature | Implementation |
+|---------|--------------|
+| JWT Authentication | `python-jose` · HS256 · 30-min access tokens |
+| Password Hashing | `passlib` · bcrypt/sha256_crypt with auto-fallback |
+| Field-level Encryption | `cryptography.fernet` · symmetric AES-128 |
+| Role-Based Access Control | Admin · Manager · Analyst · Viewer |
+| API Rate Limiting | `slowapi` · per-IP limits |
+| Secret Management | `.env` files · never committed to git |
+
+---
+
+## 📊 Python Demo Output
+
+```
+==============================================================
+  AI RETAIL INTELLIGENCE PLATFORM  -  VERSION 3.0
+==============================================================
+
+  DEMO 1: Single-Store Full Pipeline
+[OK] Platform initialized — Store: FLAGSHIP_001
+[DATA] Generated 1000 customers, 5000 transactions
+[RFM]  Computed for 994 customers
+[SEG]  KMeans: optimal k=4, silhouette=0.307
+[ANOMALY] Detected 100 anomalous customers (10% rate)
+
+  BUSINESS OVERVIEW
+   Total Customers  : 994
+   Total Revenue    : $375,252.82
+   Avg Order Value  : $75.05
+   Total CLV        : $30,352,309.82
+
+  DEMO 2: 90-Day Revenue Forecast
+   Projected revenue : $48,124.12
+   Growth trend      : +9.8%
+
+  DEMO 4: Multi-Store Network (5 stores)
+   #1 Delhi Central   : Score 100.0/100
+   South Region       : $344,224 across 3 stores
+
+  39/39 tests pass ✅
 ```
 
 ---
 
-## 🔧 Environment Configuration
+## 🛣️ Roadmap
 
-Copy `.env.example` to `.env` and configure:
-
-| Variable | Description |
-|----------|-------------|
-| `SECRET_KEY` | JWT signing key (change in production!) |
-| `OPENAI_API_KEY` | Optional — enables GPT-4 recommendations |
-| `ENCRYPTION_KEY` | Optional — Fernet key for field encryption |
-| `DATABASE_URL` | SQLite (default) or PostgreSQL |
+- [ ] PostgreSQL / Supabase integration (replace in-memory store)
+- [ ] Export dashboard as PDF report
+- [ ] Real-time WebSocket data feed from POS systems
+- [ ] Docker compose for one-command full-stack deploy
+- [ ] Multi-tenant SaaS mode with per-org isolation
 
 ---
 
-## 🚀 Deployment Options
+## 📄 License
 
-| Platform | Time | Cost | Command |
-|----------|------|------|---------|
-| Local Python | 2 min | Free | `python run_demo.py` |
-| Google Colab | 30 sec | Free | See Quick Start |
-| Docker | 5 min | Free | `docker build . && docker run -p 8000:8000` |
-| Railway/Render | 5 min | Free tier | Push to GitHub → Deploy |
-| AWS/GCP/Azure | 15 min | Paid | See `docs/deployment_guide.md` |
-
----
-
-## 📈 Performance
-
-- ⚡ **Analysis Speed**: 10K transactions in ~15s
-- 🎯 **Segmentation Quality**: 87% silhouette score
-- 📊 **CLV Accuracy**: 94% on test data
-- 💾 **Memory**: <2GB for 100K transactions
-- 🔄 **Scalability**: Tested to 1M records
-
----
-
-## 🤝 Contributing
-
-1. Fork → `git checkout -b feature/my-feature`
-2. Code → follow PEP 8, add type hints and docstrings
-3. Test → `pytest tests/ --cov=src` (maintain >80% coverage)
-4. PR → describe changes clearly
-
----
-
-## 📞 Support
-
-- 📧 Email: kbhaskarvinay@gmail.com
-- 🐛 Issues: [GitHub Issues](https://github.com/kbvinay001/AI-Retail-Intelligence-Platform--Advanced-Customer-Segmentation/issues)
-- 📖 Docs: [Wiki](https://github.com/kbvinay001/AI-Retail-Intelligence-Platform--Advanced-Customer-Segmentation/wiki)
-
----
-
-## 📜 License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-⭐ **If this project helped you, please star it!** ⭐
-
-**Made with ❤️ and Python | AI-Powered Retail Intelligence V3.0**
+MIT © 2024 — [kbvinay001](https://github.com/kbvinay001)
