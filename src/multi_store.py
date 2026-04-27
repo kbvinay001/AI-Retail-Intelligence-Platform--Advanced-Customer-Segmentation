@@ -45,7 +45,7 @@ class MultiStoreAnalytics:
         rip = RetailIntelligencePlatform(store_id=config.store_id, tenant_id=self.tenant_id)
         self.stores[config.store_id] = rip
         self.store_configs[config.store_id] = config
-        print(f"🏪 Registered store: {config.name} ({config.store_id}) — {config.city}")
+        print(f"[STORE] Registered: {config.name} ({config.store_id}) -- {config.city}")
         return rip
 
     def get_store(self, store_id: str) -> Optional[RetailIntelligencePlatform]:
@@ -74,7 +74,7 @@ class MultiStoreAnalytics:
             )
             rip.calculate_rfm_metrics()
             rip.perform_advanced_segmentation()
-        print(f"✅ Data populated across {len(self.stores)} stores.")
+        print(f"[OK] Data populated across {len(self.stores)} stores.")
 
     # ─── Consolidated KPIs ───────────────────────────────────────────────────
 
@@ -171,20 +171,20 @@ class MultiStoreAnalytics:
         regional = self.regional_rollup()
 
         print("\n" + "=" * 60)
-        print(f"🌍 MULTI-STORE NETWORK SUMMARY | Tenant: {self.tenant_id}")
+        print(f"  MULTI-STORE NETWORK SUMMARY | Tenant: {self.tenant_id}")
         print("=" * 60)
-        print(f"\n📊 STORES ({len(self.stores)} registered):")
+        print(f"\n  STORES ({len(self.stores)} registered):")
         for _, row in kpis.iterrows():
-            print(f"   [{row['store_id']}] {row['store_name']} — "
+            print(f"   [{row['store_id']}] {row['store_name']} -- "
                   f"Revenue: ${row['total_revenue']:,.0f} | "
                   f"Customers: {row['total_customers']:,}")
 
-        print("\n🏆 BENCHMARKING (Top Performers):")
+        print("\n  BENCHMARKING (Top Performers):")
         for _, row in bench.head(3).iterrows():
             print(f"   #{int(row['total_revenue_rank'])} {row['store_name']}: "
                   f"Score {row['composite_score']:.1f}/100")
 
-        print("\n🗺️  REGIONAL ROLL-UP:")
+        print("\n  REGIONAL ROLL-UP:")
         for _, row in regional.iterrows():
             print(f"   {row['region']}: ${row['total_revenue']:,.0f} across {row['stores']} stores")
         print("=" * 60)

@@ -40,8 +40,8 @@ class RetailIntelligencePlatform:
         self.scaler = RobustScaler()
         random.seed(42)
         np.random.seed(42)
-        print(f"✅ AI Retail Intelligence Platform V3.0 initialized")
-        print(f"   Store: {store_id} | Tenant: {tenant_id}")
+        print(f"[OK] AI Retail Intelligence Platform V3.0 initialized")
+        print(f"     Store: {store_id} | Tenant: {tenant_id}")
 
     # ─── Synthetic Data Generation ───────────────────────────────────────────
 
@@ -82,7 +82,7 @@ class RetailIntelligencePlatform:
         self.transactions_df = pd.DataFrame(transactions)
         self.transactions_df['transaction_date'] = pd.to_datetime(self.transactions_df['transaction_date'])
 
-        print(f"📦 Generated {n_customers} customers, {n_transactions} transactions")
+        print(f"[DATA] Generated {n_customers} customers, {n_transactions} transactions")
         return self.customers_df, self.transactions_df
 
     # ─── RFM Metrics ─────────────────────────────────────────────────────────
@@ -112,7 +112,7 @@ class RetailIntelligencePlatform:
             rfm = rfm.merge(self.customers_df[['customer_id', 'age_group', 'gender', 'city']], on='customer_id', how='left')
 
         self.rfm_df = rfm
-        print(f"📊 RFM computed for {len(rfm)} customers")
+        print(f"[RFM] Computed for {len(rfm)} customers")
         return rfm
 
     # ─── Segmentation ────────────────────────────────────────────────────────
@@ -135,7 +135,7 @@ class RetailIntelligencePlatform:
                     best_score, best_k, best_labels = score, k, labels
             self.optimal_k = best_k
             self.segment_labels = best_labels
-            print(f"🎯 KMeans: optimal k={best_k}, silhouette={best_score:.3f}")
+            print(f"[SEG] KMeans: optimal k={best_k}, silhouette={best_score:.3f}")
 
         elif method == 'hierarchical':
             best_k = n_clusters_range[0] + 2
@@ -149,11 +149,11 @@ class RetailIntelligencePlatform:
             self.optimal_k = len(set(self.segment_labels)) - (1 if -1 in self.segment_labels else 0)
 
         self.rfm_df['segment'] = self.segment_labels
-        segment_names = ['💎 VIP Champions', '🔥 Loyal Enthusiasts', '💰 Big Spenders',
-                         '🌱 New Promising', '🎯 Core Customers', '😴 Hibernating',
-                         '🚀 Growth Stars', '⚡ Flash Buyers', '🎪 Occasional', '🔮 Potential']
+        segment_names = ['VIP Champions', 'Loyal Enthusiasts', 'Big Spenders',
+                         'New Promising', 'Core Customers', 'Hibernating',
+                         'Growth Stars', 'Flash Buyers', 'Occasional', 'Potential']
         self.rfm_df['segment_name'] = self.rfm_df['segment'].apply(
-            lambda x: segment_names[x % len(segment_names)] if x >= 0 else '❓ Outlier'
+            lambda x: segment_names[x % len(segment_names)] if x >= 0 else 'Outlier'
         )
 
         return self.rfm_df, self.optimal_k
@@ -172,7 +172,7 @@ class RetailIntelligencePlatform:
         self.rfm_df['anomaly_confidence'] = -iso.score_samples(X)
 
         self.anomalies_df = self.rfm_df[self.rfm_df['anomaly_score'] == -1].copy()
-        print(f"🚨 Detected {len(self.anomalies_df)} anomalous customers ({contamination*100:.0f}% rate)")
+        print(f"[ANOMALY] Detected {len(self.anomalies_df)} anomalous customers ({contamination*100:.0f}% rate)")
         return self.anomalies_df
 
     # ─── Segment Analysis ────────────────────────────────────────────────────
@@ -295,7 +295,7 @@ class RetailIntelligencePlatform:
 
         fig.update_layout(
             height=1200, showlegend=False,
-            title_text="🏪 AI Retail Intelligence Platform V3.0 — Analytics Dashboard",
+            title_text="AI Retail Intelligence Platform V3.0 - Analytics Dashboard",
             title_font_size=18,
             paper_bgcolor='#0f172a', plot_bgcolor='#1e293b',
             font=dict(color='#e2e8f0'),
@@ -303,7 +303,7 @@ class RetailIntelligencePlatform:
 
         if export_html:
             fig.write_html(export_html)
-            print(f"💾 Dashboard exported → {export_html}")
+            print(f"[EXPORT] Dashboard saved -> {export_html}")
 
         return fig
 
@@ -314,29 +314,30 @@ class RetailIntelligencePlatform:
         insights = self.generate_business_insights()
         seg_analysis = self.analyze_segments()
 
-        print("\n" + "=" * 65)
-        print("🏪  AI RETAIL INTELLIGENCE PLATFORM V3.0 — REPORT")
-        print("=" * 65)
-        print(f"\n📊 BUSINESS OVERVIEW (Store: {self.store_id})")
-        print(f"   • Total Customers     : {insights['total_customers']:,}")
-        print(f"   • Total Revenue       : ${insights['total_revenue']:,.2f}")
-        print(f"   • Avg Order Value     : ${insights['avg_order_value']:,.2f}")
-        print(f"   • Total CLV           : ${insights['total_clv']:,.2f}")
-        print(f"   • At-Risk Customers   : {insights['at_risk_customers']:,}")
-        print(f"   • High-Value Cust.    : {insights['high_value_customers']:,}")
+        SEP = "=" * 65
+        print("\n" + SEP)
+        print("  AI RETAIL INTELLIGENCE PLATFORM V3.0 - REPORT")
+        print(SEP)
+        print(f"\n  BUSINESS OVERVIEW (Store: {self.store_id})")
+        print(f"   Total Customers     : {insights['total_customers']:,}")
+        print(f"   Total Revenue       : ${insights['total_revenue']:,.2f}")
+        print(f"   Avg Order Value     : ${insights['avg_order_value']:,.2f}")
+        print(f"   Total CLV           : ${insights['total_clv']:,.2f}")
+        print(f"   At-Risk Customers   : {insights['at_risk_customers']:,}")
+        print(f"   High-Value Cust.    : {insights['high_value_customers']:,}")
 
-        print(f"\n🎯 CUSTOMER SEGMENTS ({self.optimal_k} clusters)")
+        print(f"\n  CUSTOMER SEGMENTS ({self.optimal_k} clusters)")
         for _, row in seg_analysis.iterrows():
-            print(f"   • {row['segment_name']}: {row['count']} ({row['pct_customers']:.1f}%)")
+            print(f"   - {row['segment_name']}: {row['count']} ({row['pct_customers']:.1f}%)")
 
-        print("\n🛍️  CATEGORY REVENUE")
+        print("\n  CATEGORY REVENUE")
         for cat, rev in sorted(insights['category_revenue'].items(), key=lambda x: -x[1]):
-            print(f"   • {cat}: ${rev:,.2f}")
+            print(f"   - {cat}: ${rev:,.2f}")
 
-        print("\n📡 CHANNEL REVENUE")
+        print("\n  CHANNEL REVENUE")
         for ch, rev in sorted(insights['channel_revenue'].items(), key=lambda x: -x[1]):
-            print(f"   • {ch}: ${rev:,.2f}")
-        print("=" * 65)
+            print(f"   - {ch}: ${rev:,.2f}")
+        print(SEP)
 
         return {**insights, 'segments': seg_analysis.to_dict('records')}
 
@@ -350,4 +351,4 @@ if __name__ == "__main__":
     rip.analyze_segments()
     rip.generate_comprehensive_report()
     fig = rip.create_comprehensive_dashboard(export_html="exports/dashboard.html")
-    print("\n✅ Platform run complete. Open exports/dashboard.html to view.")
+    print("\n[DONE] Platform run complete. Open exports/dashboard.html to view.")

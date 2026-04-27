@@ -20,7 +20,13 @@ except ImportError:
 
 try:
     from passlib.context import CryptContext
-    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    # bcrypt on some systems has a 72-byte bug; use sha256_crypt as safe fallback
+    try:
+        _test_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        _test_ctx.hash("test")
+        pwd_context = _test_ctx
+    except Exception:
+        pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
     PASSLIB_AVAILABLE = True
 except ImportError:
     PASSLIB_AVAILABLE = False
@@ -67,7 +73,7 @@ class SecurityManager:
             else:
                 key = Fernet.generate_key()
                 self._fernet = Fernet(key)
-                print(f"⚠️  No ENCRYPTION_KEY set. Generated ephemeral key (non-persistent).")
+                print(f"[WARN] No ENCRYPTION_KEY set. Generated ephemeral key (non-persistent).")
         else:
             self._fernet = None
 

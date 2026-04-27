@@ -74,7 +74,7 @@ class ForecastingEngine:
 
     def _prophet_forecast(self, ts: pd.DataFrame, horizon: int = 90) -> pd.DataFrame:
         if not PROPHET_AVAILABLE:
-            print("⚠️  Prophet not installed — falling back to simple moving average.")
+            print(f"[WARN] Prophet not installed -- falling back to simple moving average.")
             return self._simple_forecast(ts, horizon)
         model = Prophet(seasonality_mode='multiplicative', yearly_seasonality=True,
                         weekly_seasonality=True, daily_seasonality=False)
@@ -88,7 +88,7 @@ class ForecastingEngine:
 
     def _arima_forecast(self, ts: pd.DataFrame, horizon: int = 90) -> pd.DataFrame:
         if not ARIMA_AVAILABLE:
-            print("⚠️  pmdarima not installed — falling back to simple moving average.")
+            print("[WARN] pmdarima not installed -- falling back to simple moving average.")
             return self._simple_forecast(ts, horizon)
         model = pm.auto_arima(ts['y'], seasonal=True, m=7, stepwise=True,
                                suppress_warnings=True, error_action='ignore')
@@ -106,7 +106,7 @@ class ForecastingEngine:
 
     def _xgboost_forecast(self, ts: pd.DataFrame, horizon: int = 90) -> pd.DataFrame:
         if not XGB_AVAILABLE:
-            print("⚠️  XGBoost not installed — falling back to simple moving average.")
+            print("[WARN] XGBoost not installed -- falling back to simple moving average.")
             return self._simple_forecast(ts, horizon)
 
         df = ts.copy()
@@ -145,7 +145,7 @@ class ForecastingEngine:
                  freq: str = "D") -> pd.DataFrame:
         """Run forecast for `horizon` days ahead."""
         ts = self.prepare_revenue_series(transactions_df, freq)
-        print(f"📈 Forecasting {horizon} days — model: {self.model_type}")
+        print(f"[FORECAST] {horizon} days ahead -- model: {self.model_type}")
 
         if self.model_type == 'prophet':
             self.forecast_df = self._prophet_forecast(ts, horizon)

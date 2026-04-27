@@ -117,9 +117,9 @@ class AIRecommendationsEngine:
         if self.use_gpt:
             openai.api_key = self.api_key
             self._client = openai.OpenAI(api_key=self.api_key)
-            print("🤖 AI Recommendations: GPT-4 mode enabled")
+            print("[AI] Recommendations: GPT-4 mode enabled")
         else:
-            print("💡 AI Recommendations: Rule-based mode (set OPENAI_API_KEY for GPT-4)")
+            print("[AI] Recommendations: Rule-based mode (set OPENAI_API_KEY for GPT-4)")
 
     # ─── Rule-Based Engine ────────────────────────────────────────────────────
 
@@ -169,10 +169,10 @@ class AIRecommendationsEngine:
                 r['source'] = 'gpt-4'
                 r['generated_at'] = datetime.now().isoformat()
                 r.setdefault('id', r.get('title', 'gpt_rec').lower().replace(' ', '_'))
-            print(f"✅ GPT-4 generated {len(recs)} recommendations")
+            print(f"[OK] GPT-4 generated {len(recs)} recommendations")
             return recs
         except Exception as e:
-            print(f"⚠️  GPT-4 error ({e}). Falling back to rule engine.")
+            print(f"[WARN] GPT-4 error ({e}). Falling back to rule engine.")
             return self._rule_based_recommendations(kpis, segment_analysis)
 
     # ─── Public API ──────────────────────────────────────────────────────────
@@ -185,15 +185,15 @@ class AIRecommendationsEngine:
 
     def print_recommendations(self, recommendations: List[dict]):
         """Pretty-print recommendations to console."""
-        priority_icons = {'CRITICAL': '🚨', 'HIGH': '🔴', 'MEDIUM': '🟡', 'LOW': '🟢'}
+        priority_icons = {'CRITICAL': '[!!!]', 'HIGH': '[!!]', 'MEDIUM': '[!]', 'LOW': '[i]'}
         print("\n" + "=" * 60)
-        print("🧠 AI-POWERED BUSINESS RECOMMENDATIONS")
+        print("  AI-POWERED BUSINESS RECOMMENDATIONS")
         print("=" * 60)
         for i, rec in enumerate(recommendations, 1):
-            icon = priority_icons.get(rec.get('priority', 'MEDIUM'), '💡')
+            icon = priority_icons.get(rec.get('priority', 'MEDIUM'), '[!]')
             print(f"\n{i}. {icon} [{rec.get('priority','MEDIUM')}] {rec['title']}")
             print(f"   {rec['recommendation']}")
-            print(f"   📋 Action Plan:")
+            print(f"   Action Plan:")
             for action in rec.get('actions', []):
-                print(f"      • {action}")
+                print(f"      - {action}")
         print("=" * 60)

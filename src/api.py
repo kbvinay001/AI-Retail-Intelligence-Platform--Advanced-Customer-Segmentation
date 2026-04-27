@@ -20,7 +20,7 @@ try:
     FASTAPI_AVAILABLE = True
 except ImportError:
     FASTAPI_AVAILABLE = False
-    print("⚠️  FastAPI not installed. Install with: pip install fastapi uvicorn[standard]")
+    print("[WARN] FastAPI not installed. Install with: pip install fastapi uvicorn[standard]")
 
 from retail_intelligence import RetailIntelligencePlatform
 from security import SecurityManager, Role
